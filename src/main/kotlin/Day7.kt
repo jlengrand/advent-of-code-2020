@@ -1,12 +1,10 @@
 fun main() {
 
-    val lines = Utils.readFileAsLinesUsingUseLines("input-7-test-2")
+    val lines = Utils.readFileAsLinesUsingUseLines("input-7")
 
     val bagMaps = lines.fold(mutableMapOf<String, List<String>>()) { acc, line -> acc[getStartingBag(line)] = getEnclosedBags(line.split("contain")[1]); acc }
 
-    println(bagMaps)
-    println("#########")
-    var bagFilter = listOf<String>("shiny gold")
+    var bagFilter = listOf("shiny gold")
     var results = mutableListOf<String>()
     var currentResults: List<String>
     do{
@@ -20,8 +18,21 @@ fun main() {
 
     // Part 2
     val bagMapsWithColors = lines.fold(mutableMapOf<String, List<Bag>>()) { acc, line -> acc[getStartingBag(line)] = getEnclosedBagsWithcolor(line.split("contain")[1]); acc }
+    println(bagMapsWithColors)
+    println(getNumberOfBags("shiny gold", bagMapsWithColors))
+
 }
 
+fun getNumberOfBags(color: String, bags: Map<String, List<Bag>>) : Int {
+    var total = 0
+
+    bags[color]!!.forEach {
+        total += it.number
+        total += getNumberOfBags(it.color, bags) * it.number
+    }
+
+    return total
+}
 
 
 fun containsOneOf(values: List<String>, matches: List<String>) : Boolean{
@@ -48,7 +59,6 @@ fun getBagNumber(bagDescription: String): Int {
 }
 
 fun getBagColor(bagDescription : String) : String {
-    println(bagDescription)
     return bagDescription.split("bag")[0].substring(3).trim()
 }
 
