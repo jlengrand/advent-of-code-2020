@@ -1,5 +1,7 @@
 # Advent of Code 2020 in Kotlin
 
+This repository is hosted [on Github](https://github.com/jlengrand/advent-of-code-2020).
+
 * See each day (first version) in the main package
 * The final package contains versions I have reworked to be better
 
