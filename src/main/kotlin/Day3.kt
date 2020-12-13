@@ -10,22 +10,22 @@ fun main() {
     val lessLines = lines.subList(1, lines.size)
     val result11 = lessLines.fold(Pair(0, 1)) {
             acc , line ->
-        final.processLine(line, acc, 1)
+        processLine(line, acc, 1)
     }
 
     val result31 = lessLines.fold(Pair(0, 3)) {
             acc , line ->
-        final.processLine(line, acc, 3)
+        processLine(line, acc, 3)
     }
 
     val result51 = lessLines.fold(Pair(0, 5)) {
             acc , line ->
-        final.processLine(line, acc, 5)
+        processLine(line, acc, 5)
     }
 
     val result71 = lessLines.fold(Pair(0, 7)) {
             acc , line ->
-        final.processLine(line, acc, 7)
+        processLine(line, acc, 7)
     }
 
     val evenLessLines = lines.filterIndexed { idx, _ -> idx % 2 == 0 }
@@ -33,7 +33,7 @@ fun main() {
 
     val result12 = theLeastLines.fold(Pair(0, 1)) {
             acc , line ->
-        final.processLine(line, acc, 1)
+        processLine(line, acc, 1)
     }
 
     println(result31.first)
